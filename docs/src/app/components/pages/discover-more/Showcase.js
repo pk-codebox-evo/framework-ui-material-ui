@@ -22,7 +22,7 @@ const appList = [
   //   link: '',
   // },
   {
-    title: 'SplitMe',
+    title: 'SplitMe - Split expenses with friends',
     author: 'Olivier Tassinari',
     img: 'images/showcase/splitme.png',
     link: 'https://splitme.net/',
@@ -74,6 +74,30 @@ const appList = [
     author: 'marmelab.com',
     img: 'http://static.marmelab.com/admin-on-rest.gif',
     link: 'https://github.com/marmelab/admin-on-rest',
+  },
+  {
+    title: 'Casalova - Book your next rental',
+    author: 'Casalova',
+    img: 'images/showcase/casalova.png',
+    link: 'https://www.casalova.com/',
+  },
+  {
+    title: 'LireLactu',
+    author: 'miLibris',
+    img: 'images/showcase/lirelactu.png',
+    link: 'http://lirelactu.fr/',
+  },
+  {
+    title: 'Realty Advisors Elite',
+    author: 'Chicago Business Intelligence',
+    img: 'images/showcase/realty-advisors-elite.png',
+    link: 'https://www.realtyadvisorselite.com/',
+  },
+  {
+    title: 'Humorista Jokes',
+    author: 'Minas Mina',
+    img: 'images/showcase/humorista.png',
+    link: 'https://humorista.org/',
   },
 ];
 

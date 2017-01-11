@@ -66,7 +66,6 @@ function getStyles(props, context, state) {
       minWidth: fullWidth ? '100%' : button.minWidth,
     },
     button: {
-      position: 'relative',
       height: buttonHeight,
       lineHeight: `${buttonHeight}px`,
       width: '100%',
@@ -120,6 +119,10 @@ class RaisedButton extends Component {
      * (use `disabledBackgroundColor` for this).
      */
     backgroundColor: PropTypes.string,
+    /**
+     * Override the inline-styles of the button element.
+     */
+    buttonStyle: PropTypes.object,
     /**
      * The content of the button.
      * If a label is provided via the `label` prop, the text within the label
@@ -188,6 +191,10 @@ class RaisedButton extends Component {
     onTouchEnd: PropTypes.func,
     /** @ignore */
     onTouchStart: PropTypes.func,
+    /**
+     * Override the inline style of the button overlay.
+     */
+    overlayStyle: PropTypes.object,
     /**
      * If true, the button will use the theme's primary color.
      */
@@ -307,6 +314,7 @@ class RaisedButton extends Component {
 
   handleTouchEnd = (event) => {
     this.setState({
+      touched: true,
       zDepth: this.state.initialZDepth,
     });
 
@@ -327,6 +335,7 @@ class RaisedButton extends Component {
   render() {
     const {
       backgroundColor, // eslint-disable-line no-unused-vars
+      buttonStyle,
       children,
       className,
       disabled,
@@ -338,10 +347,12 @@ class RaisedButton extends Component {
       labelColor, // eslint-disable-line no-unused-vars
       labelPosition,
       labelStyle,
+      overlayStyle,
       primary, // eslint-disable-line no-unused-vars
       rippleStyle,
       secondary, // eslint-disable-line no-unused-vars
-      ...other,
+      style,
+      ...other
     } = this.props;
 
     const {prepareStyles} = this.context.muiTheme;
@@ -386,7 +397,7 @@ class RaisedButton extends Component {
     return (
       <Paper
         className={className}
-        style={Object.assign(styles.root, this.props.style)}
+        style={Object.assign(styles.root, style)}
         zDepth={this.state.zDepth}
       >
         <EnhancedButton
@@ -394,7 +405,7 @@ class RaisedButton extends Component {
           {...buttonEventHandlers}
           ref="container"
           disabled={disabled}
-          style={styles.button}
+          style={Object.assign(styles.button, buttonStyle)}
           focusRippleColor={mergedRippleStyles.color}
           touchRippleColor={mergedRippleStyles.color}
           focusRippleOpacity={mergedRippleStyles.opacity}
@@ -402,7 +413,7 @@ class RaisedButton extends Component {
         >
           <div
             ref="overlay"
-            style={prepareStyles(styles.overlay)}
+            style={prepareStyles(Object.assign(styles.overlay, overlayStyle))}
           >
             {enhancedButtonChildren}
           </div>
